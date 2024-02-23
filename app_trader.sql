@@ -1,70 +1,3 @@
---Exploration
-
-SELECT *
-FROM play_store_apps 
-WHERE genres ILIKE '%Game%' 
-ORDER BY rating DESC
-LIMIT 10
-
-SELECT DISTINCT genres
-FROM play_store_apps
-
-SELECT  primary_genre
-FROM app_store_apps 
-GROUP BY primary_genre
-ORDER BY COUNT(*) DESC
-
-SELECT *
-FROM app_store_apps
-WHERE primary_genre = 'Games' AND rating = 5.0 AND price BETWEEN 0 AND 1
---ORDER BY rating DESC
--- LIMIT 30
-
-SELECT *
-FROM app_store_apps
-WHERE primary_genre = 'Education' AND rating = 5.0 AND price BETWEEN 0 AND 1
-
-SELECT DISTINCT currency
-FROM app_store_apps
-
-SELECT COUNT(*) FROM app_store_apps 7197
-SELECT COUNT(*) FROM play_store_apps 10840 
-
---Apple query
-
-SELECT name, review_count::numeric, content_rating
-FROM app_store_apps
-WHERE primary_genre = 'Games' 
-	AND rating = 5.0 
-	AND price BETWEEN 0 AND 1
-ORDER BY review_count DESC
-
---Play query
-
-SELECT name, review_count::numeric, content_rating, rating
-FROM play_store_apps
-WHERE category = 'GAME' --there are a lot listed under FAMILY but not all in family are games...
--- 	(category = 'GAME'
--- 	OR genres ILIKE '%Game%') --go in later and see what other words tag games
-	AND rating = 5.0 --necessary to lower to 4.5 since there aren't any 5.0 games, but more may show up after fixing game filter
-	AND REPLACE(price, '$', '')::numeric BETWEEN 0 AND 1
-ORDER BY review_count DESC
-
-SELECT *
-FROM play_store_apps
---WHERE category = 'FAMILY'
-WHERE name ILIKE '%plants%zombies%'
-
-SELECT category
-FROM play_store_apps
-GROUP BY category
-ORDER BY COUNT(*)
-
----Unioned query---
-	--check for other categories on Play store that might be games
-	--possibly filter by num_reviews over 1mil? Or include potentially up and coming games?
-	--format $ as money...
-
 WITH apps AS 
 (
 	(SELECT name, rating, review_count::numeric, price
@@ -79,9 +12,8 @@ WITH apps AS
 )
 SELECT 
 	name, 
-	COUNT(name), --remove this later, it's just to check my work
 	ROUND(ROUND(AVG(rating)*2, 0) / 2, 1) AS avg_rating_rounded,
-	ROUND(SUM(review_count)/1000000, 2) AS review_count_millions, -- edit to report in millions
+	ROUND(SUM(review_count)/1000000, 2) AS review_count_millions,
 	MAX(price) AS price,
 	CASE WHEN MAX(price) <= 1 THEN 10000 
 		ELSE MAX(price)*10000 END 
@@ -113,6 +45,6 @@ SELECT
 FROM apps
 GROUP BY name
 HAVING ROUND(ROUND(AVG(rating)*2, 0) / 2, 1) >= 4.0
-	AND SUM(review_count) >= 1000000 	--Possibly filter
+	AND SUM(review_count) >= 1000000 
 ORDER BY net_profit DESC, review_count_millions DESC
 LIMIT 10;
