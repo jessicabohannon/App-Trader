@@ -10,7 +10,7 @@ This project involves a comprehensive analysis of data sourced from the Apple Ap
 
 Data Exploration:
 * Explored and gained insights from both Apple App Store and Google Play Store data.
-* Applied set theory, CTEs, and CASE WHEN statements to uncover valuable information.
+* Applied set theory, CTEs, subqueries and CASE WHEN statements to uncover valuable information.
 
 Assumptions and Framework:
 * Developed assumptions to guide strategic decisions, covering pricing, earnings, marketing costs, and app lifespan.
@@ -21,7 +21,7 @@ Recommendations:
 * Compiled a Top 10 List of recommended apps for potential acquisition in a final report.
 
 ## Skills Showcased:
-* Proficient use of SQL, including CTEs and CASE WHEN statements.
+* Proficient use of SQL, including CTEs, CASE WHEN statements, subqueries, and set theory.
 * Strategic data analysis for decision-making.
 * Clear and concise data storytelling.
 
