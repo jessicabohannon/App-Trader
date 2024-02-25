@@ -2,7 +2,7 @@
 
 # App Trader
 
-[Click here to view the App Trader SQL query](https://github.com/jessicabohannon/app_trader/blob/main/app_trader.sql,) and [here to view the final report.](https://github.com/jessicabohannon/App-Trader/blob/main/App%20Trader%20Report.pdf)
+[Click here to view the App Trader SQL query,](https://github.com/jessicabohannon/App-Trader/blob/main/app_trader.sql) and [here to view the final report.](https://github.com/jessicabohannon/App-Trader/blob/main/App%20Trader%20Report.pdf)
 
 This project involves a comprehensive analysis of data sourced from the Apple App Store and Google Play Store. The primary focus was on strategic insights for App Trader, a company specializing in app acquisitions. The dataset, divided into separate tables for each store, required meticulous handling using advanced SQL techniques, including CTEs and CASE WHEN statements.
 
